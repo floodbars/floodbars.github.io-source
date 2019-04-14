@@ -1,0 +1,13 @@
+li.complete {
+	font-weight: bold;
+}
+li.locked {
+	opacity: 0.3;
+}
+div.preview {
+	white-space: pre-wrap;
+}
+#root {
+	height: 100vh;
+	overflow-y: hidden;
+}
