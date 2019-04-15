@@ -12,7 +12,7 @@ class Shelf extends React.Component {
       achievements: [],
       isLoaded: false,
       error: null,
-      preview: null,
+      selection: null,
       filters: {
         complete: true,
         partial: true,
@@ -68,7 +68,7 @@ class Shelf extends React.Component {
   
   previewBook(book) {
     this.setState({
-      preview: book
+      selection: book
     });
   }
 
@@ -81,7 +81,7 @@ class Shelf extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, achievements, preview, filters } = this.state;
+    const { error, isLoaded, achievements, selection, filters } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -96,15 +96,22 @@ class Shelf extends React.Component {
           </div>
           <div className="row" style={{height: "90%"}}>
             <div className="col-sm-4 h-100" style={{overflowY: "auto"}}>
-              <Filter filters={filters} onSelectionChange={this._onSelectionChange.bind(this)} />
+              <Filter
+                filters={filters}
+                onSelectionChange={this._onSelectionChange.bind(this)} />
               <div className="list-group">
                 {books.map(book => (
-                  <Book key={book.name} value={book} onClick={() => this.previewBook(book)} filters={filters} />
+                  <Book
+                    key={book.name}
+                    activeBook={selection == null ? null : selection.name}
+                    value={book}
+                    onClick={() => this.previewBook(book)}
+                    filters={filters} />
                 ))}
               </div>
             </div>
             <div className="col-sm-8 h-100" style={{overflowY: "auto"}}>
-              <Preview book={preview} />
+              <Preview book={selection} />
             </div>
           </div>
         </div>

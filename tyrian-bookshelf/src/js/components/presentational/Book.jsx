@@ -17,12 +17,20 @@ class Book extends React.Component {
     case "complete":
       context = "primary";
       break;
+    case "locked":
+    default:
+      context = "light";
+      break;
     }
 
-    // TODO set active highlight somehow?
+    var contextClass = "list-group-item-" + context;
+    var hiddenClass = this.props.filters[this.state.status] ? "d-flex" : "d-none";
+    var activeClass = (this.props.activeBook == this.state.name) ? "active" : "";
+
     return (
-    <a href="#" className={"list-group-item-" + context + " list-group-item " + (this.props.filters[this.state.status] ? "d-flex" : "d-none") + " justify-content-between align-items-center"}
-      onClick={this.onClick}>
+    <a href="#"
+        className={`list-group-item ${contextClass} ${hiddenClass} ${activeClass} justify-content-between align-items-center`}
+        onClick={this.onClick}>
       {this.state.name}
       {(this.state.status == "partial") &&
       <span className="badge badge-warning badge-pill">
