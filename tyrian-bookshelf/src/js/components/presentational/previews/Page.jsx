@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import BookHint from "./BookHint.jsx";
 
 class Page extends React.Component {
   render() {
@@ -9,6 +10,7 @@ class Page extends React.Component {
       text = this.props.page.text;
       style = "primary";
     }
+
     return (
       <div className={"card mb-3 border-" + style}>
         {this.props.page.description &&
@@ -18,6 +20,9 @@ class Page extends React.Component {
           {text.split("\n").map((paragraph, index) => (
             <p key={"p-" + index}>{paragraph}</p>
           ))}
+          {!this.props.page.isUnlocked && this.props.page.achievement && !this.props.hideHint &&
+            <BookHint value={this.props.page.achievement.name} />
+          }
         </div>
       </div>
     );

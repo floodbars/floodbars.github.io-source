@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Page from "./Page.jsx"
+import BookHint from "./BookHint.jsx";
 
 class PagedBookPreview extends React.Component {
   render() {
@@ -9,12 +10,19 @@ class PagedBookPreview extends React.Component {
       return ("Uh-oh");
     }
 
+    var achievements = new Set(book.text.filter(function(page) {
+      return !page.isUnlocked 
+    }).map(page => page.achievement));
+    var hasBookLevelHint = achievements.size == 1;
     return (
       <div className="card">
         <div className="card-body">
           <h4 className="card-title">{book.name}</h4>
+          {hasBookLevelHint &&
+            <BookHint value={achievements.values().next().value.name} />
+          }
           {book.text.map(page => (
-            <Page page={page} key={page.page} />
+            <Page page={page} key={page.page} hideHint={hasBookLevelHint} />
           ))}
         </div>
       </div>

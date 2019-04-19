@@ -69,6 +69,33 @@ class BookRepository {
     });
     // TODO: book, paged, collation (multiple disparate things)
 
+    // Populate books with their respective achievements.
+    this._achievements.forEach(achievement => {
+      achievement["bits"]
+        .map((bit, index) => {
+          var bookName = bit["book"];
+            if (bookName) {
+              var book = books[bookName];
+              if (book == null) {
+                console.log("Unable to find book with name: " + bookName);
+              } else {
+                if (bit["page"]) {
+                  var page = book.text.find(x => x.page == bit.page);
+                  page.achievement = achievement;
+                } else {
+                  books[bookName].achievement = achievement;
+                }
+              }
+            }
+          });
+      if (achievement.unlockOnCompletion) {
+        achievement.unlockOnCompletion.forEach(bit => {
+          var bookName = bit["book"];
+          books[bookName].text.find(x => x.page == bit.page).achievement = achievement;
+        });
+      }
+    });
+
     progression.forEach(progress => {
       var achievement = achievements[progress.id];
       if (achievement == null) {
@@ -77,28 +104,28 @@ class BookRepository {
       achievement["bits"]
         .map((bit, index) => {
           var isDone = progress.done || progress.bits.includes(index);
+          var bookName = bit["book"];
           if (isDone) {
-            var bookName = bit["book"];
             if (bookName) {
+              var book = books[bookName];
               if (bit["page"]) {
-                  var book = books[bookName];
                   if (book == null) {
                       console.log("Unable to find book with name: " + bookName);
                   } else {
-                      book.text.find(x => x.page == bit.page).isUnlocked = true;
+                      var page = book.text.find(x => x.page == bit.page).isUnlocked = true;
                   }
               } else {
-                books[bookName].status = "complete";
+                book.status = "complete";
               }
             }
           }
         });
-        if (progress.done && achievement.unlockOnCompletion) {
-          achievement.unlockOnCompletion.forEach(bit => {
-            var bookName = bit["book"];
-            books[bookName].text.find(x => x.page == bit.page).isUnlocked = true;
-          });
-        }
+      if (progress.done && achievement.unlockOnCompletion) {
+        achievement.unlockOnCompletion.forEach(bit => {
+          var bookName = bit["book"];
+          books[bookName].text.find(x => x.page == bit.page).isUnlocked = true;
+        });
+      }
     });
 
     output.forEach(book => {

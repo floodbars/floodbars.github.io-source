@@ -10,7 +10,6 @@ class Filter extends React.Component {
   render() {
     var filterStates = this.props.filters;
     // how do we fix this to the top?
-    console.log(filterStates.products);
     return (
       <div className="input-group mb-2">
         <label className="my-1 mr-2">Show only</label>
