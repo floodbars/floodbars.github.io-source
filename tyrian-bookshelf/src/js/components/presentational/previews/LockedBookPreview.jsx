@@ -26,10 +26,16 @@ class LockedBookPreview extends React.Component {
     var hintName = this.getHint();
     return (
       <div className="card border-0">
-        <div className="preview card-body text-warning p-0">
-          <h4 className="card-title">{book.name}</h4>
-          You have yet to acquire this book.
+        <div className="preview card-body p-0">
+          <h4 className="card-title">{book.name}
+            <span className="badge badge-warning ml-2">
+              Missing
+            </span>
+          </h4>
           <BookHint value={hintName} />
+          <div className="bd-callout bd-callout-warning text-secondary p-2 p-sm-3">
+            You have yet to acquire this book.
+          </div>
         </div>
       </div>
     );
