@@ -17,6 +17,8 @@ class Shelf extends React.Component {
       },
       showConfig: false
     };
+
+    this.configRef = React.createRef() 
   }
 
   previewBook(book) {
@@ -34,9 +36,13 @@ class Shelf extends React.Component {
   }
 
   _toggleConfiguration() {
-    console.log("showConfig: " + !this.state.showConfig);
+    var newConfig = !this.state.showConfig;
     this.setState({
-      showConfig: !this.state.showConfig
+      showConfig: newConfig
+    }, () => {
+      if (newConfig) {
+        this.configRef.current.scrollTop = 0;
+      }
     });
   }
 
@@ -48,7 +54,8 @@ class Shelf extends React.Component {
 
     return (
       <div className="codex row h-100">
-        <nav className="col-sm-4 h-100 p-0" style={{overflowY: "auto"}}>
+        <nav className="col-sm-4 h-100 p-0" style={{overflowY: "auto"}}
+              ref={this.configRef}>
           <nav class="navbar navbar-dark bg-primary sticky-top shadow mb-2">
             <a class="navbar-brand" href="#">Tyrian Bookshelf</a>
             <button
@@ -58,7 +65,8 @@ class Shelf extends React.Component {
               &#9881;
             </button>
           </nav>
-          <div className={"card bg-light border-primary m-4 p-3 " + (showConfig ? '' : 'collapse')} id="bookshelfConfig">
+          <div className={"card bg-light border-primary m-4 p-3 " + (showConfig ? '' : 'collapse')}
+              id="bookshelfConfig">
             <Filter
               filters={filters}
               onSelectionChange={this._onSelectionChange.bind(this)} />
