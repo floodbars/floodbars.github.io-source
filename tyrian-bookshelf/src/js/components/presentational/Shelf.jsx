@@ -54,7 +54,7 @@ class Shelf extends React.Component {
 
     return (
       <div className="codex row h-100">
-        <nav className="col-sm-4 h-100 p-0" style={{overflowY: "auto"}}
+        <nav id="pane-nav" className="col-sm-4 p-0 shadow-sm" style={{overflowY: "auto"}}
               ref={this.configRef}>
           <nav class="navbar navbar-dark bg-primary sticky-top shadow mb-2">
             <a class="navbar-brand" href="#">Tyrian Bookshelf</a>
@@ -65,7 +65,7 @@ class Shelf extends React.Component {
               &#9881;
             </button>
           </nav>
-          <div className={"card bg-light border-primary m-4 p-3 " + (showConfig ? '' : 'collapse')}
+          <div className={"card bg-light border-primary m-4-sm p-3-sm m-2 p-1 " + (showConfig ? '' : 'collapse')}
               id="bookshelfConfig">
             <Filter
               filters={filters}
@@ -82,7 +82,7 @@ class Shelf extends React.Component {
             ))}
           </div>
         </nav>
-        <main className="col-sm-8 h-100 p-3" style={{overflowY: "auto"}}>
+        <main id="pane-main" className="col-sm-8 p-3" style={{overflowY: "auto"}}>
           <Preview book={selection} />
         </main>
       </div>

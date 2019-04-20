@@ -9,8 +9,8 @@ class Preview extends React.Component {
     var book = this.props.book;
     if (!book) {
       return ( 
-        <div className="card">
-          <div className="card-body text-secondary">
+        <div className="card border-0">
+          <div className="card-body text-secondary p-0">
             No book selected to preview.
           </div>
         </div>

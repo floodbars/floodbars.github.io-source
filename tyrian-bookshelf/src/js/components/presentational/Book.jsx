@@ -29,7 +29,7 @@ class Book extends React.Component {
 
     return (
     <a href="#"
-        className={`list-group-item ${contextClass} ${hiddenClass} ${activeClass} justify-content-between align-items-center`}
+        className={`list-group-item p-2 pl-sm-3 ${contextClass} ${hiddenClass} ${activeClass} justify-content-between align-items-center`}
         onClick={this.onClick}>
       {this.state.name}
       {(this.state.status == "partial") &&

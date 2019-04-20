@@ -16,7 +16,7 @@ class Page extends React.Component {
         {this.props.page.description &&
           <div className="card-header">{this.props.page.description}</div>
         }
-        <div className="preview card-body">
+        <div className="preview card-body p-2 p-sm-3">
           {text.split("\n").map((paragraph, index) => (
             <p key={"p-" + index}>{paragraph}</p>
           ))}

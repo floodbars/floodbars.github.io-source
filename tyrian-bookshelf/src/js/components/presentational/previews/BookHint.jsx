@@ -9,7 +9,7 @@ class BookHint extends React.Component {
 
     return (
       <div className="card text-dark bg-light mb-2 mt-2">
-        <div className="preview card-body">
+        <div className="preview card-body p-2 p-sm-3">
             <span class="badge badge-warning rounded-circle p-2 mr-3">💡</span>
             <b>Hint</b>: <a href={"https://wiki.guildwars2.com/wiki/" + article} target="_new" className="text-info">{name}</a>
         </div>

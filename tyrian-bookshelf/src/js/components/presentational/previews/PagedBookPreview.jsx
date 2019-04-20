@@ -15,8 +15,8 @@ class PagedBookPreview extends React.Component {
     }).map(page => page.achievement));
     var hasBookLevelHint = achievements.size == 1;
     return (
-      <div className="card">
-        <div className="card-body">
+      <div className="card border-0">
+        <div className="card-body p-0">
           <h4 className="card-title">{book.name}</h4>
           {hasBookLevelHint &&
             <BookHint value={achievements.values().next().value.name} />

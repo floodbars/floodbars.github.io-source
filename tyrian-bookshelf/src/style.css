@@ -11,3 +11,28 @@ div.preview {
 	height: 100vh;
 	overflow-y: hidden;
 }
+html {
+	scroll-behavior: smooth;
+}
+.card-body p:last-child {
+	margin-bottom: 0.25em;
+}
+#pane-nav {
+	height: 100%;
+}
+
+#pane-main {
+	height: 100%;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (max-device-width : 576px) {
+	#pane-nav {
+		height: 30%;
+	}
+
+	#pane-main {
+		height: 70%;
+	}
+}
