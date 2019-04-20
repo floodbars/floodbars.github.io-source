@@ -73,24 +73,28 @@ class Main extends React.Component {
       return <div>Loading data...</div>;
     } else {
       return (
-        <div>
-          <h1>Tyrian Bookshelf</h1>
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-group">
-            <label htmlFor="api-key">
-              API Key
-            </label>
-            <input
-              id="api-key"
-              className="form-control"
-              onChange={this.handleChange}
-              value={this.state.apiKey}
-            />
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Load
-            </button>
-          </form>
+        <div className="row">
+          <div className="col p-0">
+            <nav class="navbar navbar-dark bg-primary sticky-top shadow mb-2">
+              <a class="navbar-brand" href="#">Tyrian Bookshelf</a>
+            </nav>
+            <form onSubmit={this.handleSubmit} className="p-2">
+              <div className="form-group">
+              <label htmlFor="api-key">
+                API Key
+              </label>
+              <input
+                id="api-key"
+                className="form-control"
+                onChange={this.handleChange}
+                value={this.state.apiKey}
+              />
+              </div>
+              <button type="submit" className="btn btn-primary">
+                Load
+              </button>
+            </form>
+          </div>
         </div>
       );
     }

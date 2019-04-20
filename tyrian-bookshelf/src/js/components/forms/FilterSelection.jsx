@@ -8,7 +8,7 @@ class FilterSelection extends React.Component {
 
   render() {
     return (
-      <label className={ "btn form-check-inline btn-outline-primary btn-sm " + (this.props.isChecked ? 'active' : 'disabled') }>
+      <label className={ "btn form-check-inline btn-outline-primary btn-sm mb-1 " + (this.props.isChecked ? 'active' : 'disabled') }>
         <input
           type="checkbox"
           checked={this.props.isChecked}

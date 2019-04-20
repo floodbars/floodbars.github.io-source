@@ -17,7 +17,8 @@ class Shelf extends React.Component {
         complete: true,
         partial: true,
         locked: true
-      }
+      },
+      showConfig: false
     };
   }
   componentDidMount() {
@@ -80,8 +81,15 @@ class Shelf extends React.Component {
     });
   }
 
+  _toggleConfiguration() {
+    console.log("showConfig: " + !this.state.showConfig);
+    this.setState({
+      showConfig: !this.state.showConfig
+    });
+  }
+
   render() {
-    const { error, isLoaded, achievements, selection, filters } = this.state;
+    const { error, isLoaded, achievements, selection, filters, showConfig } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -90,30 +98,36 @@ class Shelf extends React.Component {
       var books = this.props.repository.mapAchievementsToBooks(achievements);
       books.sort((x, y) => x["name"].localeCompare(y["name"]));
       return (
-        <div className="codex container-fluid h-100">
-          <div className="row">
-            <h2>Tyrian Bookshelf</h2>
-          </div>
-          <div className="row" style={{height: "90%"}}>
-            <div className="col-sm-4 h-100" style={{overflowY: "auto"}}>
+        <div className="codex row h-100">
+          <nav className="col-sm-4 h-100 p-0" style={{overflowY: "auto"}}>
+            <nav class="navbar navbar-dark bg-primary sticky-top shadow mb-2">
+              <a class="navbar-brand" href="#">Tyrian Bookshelf</a>
+              <button
+                  className="btn btn-primary"
+                  type="button"
+                  onClick={() => this._toggleConfiguration()}>
+                &#9881;
+              </button>
+            </nav>
+            <div className={"card bg-light border-primary m-4 p-3 " + (showConfig ? '' : 'collapse')} id="bookshelfConfig">
               <Filter
                 filters={filters}
                 onSelectionChange={this._onSelectionChange.bind(this)} />
-              <div className="list-group">
-                {books.map(book => (
-                  <Book
-                    key={book.name}
-                    activeBook={selection == null ? null : selection.name}
-                    value={book}
-                    onClick={() => this.previewBook(book)}
-                    filters={filters} />
-                ))}
-              </div>
             </div>
-            <div className="col-sm-8 h-100" style={{overflowY: "auto"}}>
-              <Preview book={selection} />
+            <div className="list-group p-2">
+              {books.map(book => (
+                <Book
+                  key={book.name}
+                  activeBook={selection == null ? null : selection.name}
+                  value={book}
+                  onClick={() => this.previewBook(book)}
+                  filters={filters} />
+              ))}
             </div>
-          </div>
+          </nav>
+          <main className="col-sm-8 h-100 p-3" style={{overflowY: "auto"}}>
+            <Preview book={selection} />
+          </main>
         </div>
       );
     }

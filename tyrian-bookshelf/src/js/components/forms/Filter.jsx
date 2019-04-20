@@ -11,7 +11,7 @@ class Filter extends React.Component {
     var filterStates = this.props.filters;
     // how do we fix this to the top?
     return (
-      <div className="input-group mb-2">
+      <div className="input-group p-1">
         <label className="my-1 mr-2">Show only</label>
         <div className="btn-group-toggle mr-1">
           {Object.keys(filterStates).map((name) => (
