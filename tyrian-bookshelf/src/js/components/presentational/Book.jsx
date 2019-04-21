@@ -15,7 +15,7 @@ class Book extends React.Component {
       context = "secondary";
       break;
     case "complete":
-      context = "primary";
+      context = "tyria";
       break;
     case "locked":
     default:

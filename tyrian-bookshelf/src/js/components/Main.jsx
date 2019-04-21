@@ -156,7 +156,7 @@ class Main extends React.Component {
     return (
       <div className="row">
         <div className="col p-0">
-          <nav class="navbar navbar-dark bg-primary sticky-top shadow mb-2">
+          <nav class="navbar navbar-dark bg-tyria sticky-top shadow mb-2">
             <a class="navbar-brand" href="#">Tyrian Bookshelf</a>
           </nav>
           {interjection}
@@ -172,7 +172,7 @@ class Main extends React.Component {
               value={this.state.apiKey}
             />
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-tyria">
               Load
             </button>
           </form>

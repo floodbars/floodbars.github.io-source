@@ -6,6 +6,7 @@ import BookPreview from "./BookPreview.jsx";
 
 class Preview extends React.Component {
   render() {
+    // TODO: reset scroll to top
     var book = this.props.book;
     if (!book) {
       return ( 

@@ -56,16 +56,16 @@ class Shelf extends React.Component {
       <div className="codex row h-100">
         <nav id="pane-nav" className="col-sm-4 p-0 shadow-sm" style={{overflowY: "auto"}}
               ref={this.configRef}>
-          <nav class="navbar navbar-dark bg-primary sticky-top shadow mb-2">
+          <nav class="navbar navbar-dark bg-tyria sticky-top shadow mb-2">
             <a class="navbar-brand" href="#">Tyrian Bookshelf</a>
             <button
-                className="btn btn-primary"
+                className="btn btn-tyria"
                 type="button"
                 onClick={() => this._toggleConfiguration()}>
               &#9881;
             </button>
           </nav>
-          <div className={"card bg-light border-primary m-4-sm p-3-sm m-2 p-1 " + (showConfig ? '' : 'collapse')}
+          <div className={"card bg-light border-tyria m-4-sm p-3-sm m-2 p-1 " + (showConfig ? '' : 'collapse')}
               id="bookshelfConfig">
             <Filter
               filters={filters}
